@@ -1,0 +1,23 @@
+To start-
+
+service NetworkManager stop
+airmon-ng check kill
+ifconfig wlan0 10.0.0.1 netmask 255.255.255.0
+route add default gw 10.0.0.1
+
+
+dnsmasq -C dnsmasq.conf
+hostapd hostapd.conf -B
+
+
+service apache2 start
+
+
+To stop -
+
+service hostapd stop
+service apache2 stop
+service dnsmasq stop
+service rpcbind stop
+killall dnsmasq
+killall hostapd
